@@ -15,7 +15,7 @@
 #include <map>
 
 
-template<class ArgType>
+template<class... ArgType>
 class ofxLiquidEvent {
 public:
 	//this used to be
@@ -24,7 +24,7 @@ public:
 	 typedef public FUNCTION<void()> VoidFunctor;
 	 not sure why... but anyway that doesn't work on Xcode 6
 	 */
-	typedef FUNCTION<void(ArgType&)> Functor;
+	typedef FUNCTION<void(ArgType&...)> Functor;
 	typedef FUNCTION<void()> VoidFunctor;
 	typedef int32_t IndexType; // use negative index for bottom of stack
 	struct Index {
@@ -79,30 +79,30 @@ public:
 		}
 	}
 
-	void notifyListeners(ArgType& arguments) {
+	void notifyListeners(ArgType&... arguments) {
 		for (auto listener : this->listeners) {
-			listener.second(arguments);
+			listener.second(arguments...);
 		}
 	}
 
 	/// Warning : You will not be able to call this if ArgType does not have a default public constructor
-	void notifyListeners() {
-		ArgType dummyArguments;
-		for (auto listener : this->listeners) {
-			listener.second(dummyArguments);
-		}
-	}
+//	void notifyListeners() {
+//		ArgType dummyArguments;
+//		for (auto listener : this->listeners) {
+//			listener.second(dummyArguments...);
+//		}
+//	}
 
 	/// Useful for mouse action stacks where last is top (first)
-	void notifyListenersInReverse(ArgType& arguments) {
+	void notifyListenersInReverse(ArgType&... arguments) {
 		auto it = this->listeners.rbegin();
 		for (; it != this->listeners.rend(); it++) {
-			it->second(arguments);
+			it->second(arguments...);
 		}
 	}
 
-	void operator()(ArgType& arguments) {
-		this->notifyListeners(arguments);
+	void operator()(ArgType&... arguments) {
+		this->notifyListeners(arguments...);
 	}
 
 	bool empty() const {
