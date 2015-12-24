@@ -4,30 +4,30 @@
 #include "ofxLiquidEvent.h"
 
 namespace ofxLiquidEventUtils {
-	ofxLiquidEvent<void>& getEvent(const string &key) {
+	inline ofxLiquidEvent<void>& getEvent(const string &key) {
 		static map<string, ofxLiquidEvent<void>> event;
 		return event[key];
 	}
 	template<class... ArgType>
-	ofxLiquidEvent<ArgType...>& getEvent(const string &key) {
+	inline ofxLiquidEvent<ArgType...>& getEvent(const string &key) {
 		static map<string, ofxLiquidEvent<ArgType...>> event;
 		return event[key];
 	}
 	
 	// ==========
-	void addListener(const string &key, function<void()> func) {
+	inline void addListener(const string &key, function<void()> func) {
 		getEvent(key) += func;
 	}
 	template<class... ArgType>
-	void addListener(const string &key, function<void(ArgType...)> func) {
+	inline void addListener(const string &key, function<void(ArgType...)> func) {
 		getEvent<ArgType...>(key) += func;
 	}
 	template<class... ArgType>
-	void addListener(const string &key, function<void(ArgType&...)> func) {
+	inline void addListener(const string &key, function<void(ArgType&...)> func) {
 		getEvent<ArgType...>(key) += func;
 	}
 	template<class... ArgType>
-	void addListener(const string &key, function<void(const ArgType&...)> func) {
+	inline void addListener(const string &key, function<void(const ArgType&...)> func) {
 		getEvent<ArgType...>(key) += func;
 	}
 //	template<class... ArgType>
@@ -36,19 +36,19 @@ namespace ofxLiquidEventUtils {
 //	}
 	
 	template<class Listener>
-	void addListener(const string &key, Listener *listener, void(Listener::*func)(void)) {
+	inline void addListener(const string &key, Listener *listener, void(Listener::*func)(void)) {
 		getEvent(key) += [listener,func]() { (listener->*func)(); };
 	}
 	template<class Listener, class... ArgType>
-	void addListener(const string &key, Listener *listener, void(Listener::*func)(ArgType...)) {
+	inline void addListener(const string &key, Listener *listener, void(Listener::*func)(ArgType...)) {
 		getEvent<ArgType...>(key) += [listener,func](ArgType... arg) { (listener->*func)(arg...); };
 	}
 	template<class Listener, class... ArgType>
-	void addListener(const string &key, Listener *listener, void(Listener::*func)(ArgType&...)) {
+	inline void addListener(const string &key, Listener *listener, void(Listener::*func)(ArgType&...)) {
 		getEvent<ArgType...>(key) += [listener,func](ArgType... arg) { (listener->*func)(arg...); };
 	}
 	template<class Listener, class... ArgType>
-	void addListener(const string &key, Listener *listener, void(Listener::*func)(const ArgType&...)) {
+	inline void addListener(const string &key, Listener *listener, void(Listener::*func)(const ArgType&...)) {
 		getEvent<ArgType...>(key) += [listener,func](ArgType... arg) { (listener->*func)(arg...); };
 	}
 //	template<class Listener, class... ArgType>
@@ -57,15 +57,15 @@ namespace ofxLiquidEventUtils {
 //	}
 
 	// ==========
-	void notify(const string &key) {
+	inline void notify(const string &key) {
 		getEvent(key).notifyListeners();
 	}
 	template<class... ArgType>
-	void notify(const string &key, ArgType&... arg) {
+	inline void notify(const string &key, ArgType&... arg) {
 		getEvent<ArgType...>(key).notifyListeners(arg...);
 	}
 	template<class... ArgType>
-	void notify(const string &key, const ArgType&... arg) {
+	inline void notify(const string &key, const ArgType&... arg) {
 		getEvent<ArgType...>(key).notifyListeners(const_cast<ArgType&>(arg)...);
 	}
 //	template<class... ArgType>
@@ -73,7 +73,7 @@ namespace ofxLiquidEventUtils {
 //		getEvent<ArgType...>(key).notifyListeners(arg...);
 //	}
 	template<class... ArgType>
-	void notify(const string &key, ArgType*... arg) {
+	inline void notify(const string &key, ArgType*... arg) {
 		getEvent<ArgType*...>(key).notifyListeners(arg...);
 	}
 }
