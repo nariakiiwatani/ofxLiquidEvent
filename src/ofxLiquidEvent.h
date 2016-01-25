@@ -20,7 +20,7 @@ class ofxLiquidEvent {
 public:
 	//this used to be
 	/*
-	 typedef public FUNCTION<void(ArgType&)> Functor;
+	 typedef public FUNCTION<void(ArgType&&)> Functor;
 	 typedef public FUNCTION<void()> VoidFunctor;
 	 not sure why... but anyway that doesn't work on Xcode 6
 	 */
@@ -79,7 +79,7 @@ public:
 		}
 	}
 
-	void notifyListeners(ArgType&&... arguments) {
+	void notifyListeners(ArgType... arguments) {
 		for (auto listener : this->listeners) {
 			listener.second(std::forward<ArgType>(arguments)...);
 		}
@@ -94,14 +94,14 @@ public:
 //	}
 
 	/// Useful for mouse action stacks where last is top (first)
-	void notifyListenersInReverse(ArgType&&... arguments) {
+	void notifyListenersInReverse(ArgType... arguments) {
 		auto it = this->listeners.rbegin();
 		for (; it != this->listeners.rend(); it++) {
 			it->second(std::forward<ArgType>(arguments)...);
 		}
 	}
 
-	void operator()(ArgType&&... arguments) {
+	void operator()(ArgType... arguments) {
 		this->notifyListeners(std::forward<ArgType>(arguments)...);
 	}
 

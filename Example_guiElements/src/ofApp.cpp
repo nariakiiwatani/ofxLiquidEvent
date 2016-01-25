@@ -9,11 +9,11 @@ void ofApp::setup(){
 	//
 	auto button = new GuiElement();
 	
-	button->onDraw += [this, button] (GuiElement::DrawArgs&) {
+	button->onDraw += [this, button] (const GuiElement::DrawArgs&) {
 		auto & bounds = button->bounds;
 		ofPushStyle();
 		ofNoFill();
-		ofRect(bounds);
+		ofDrawRectangle(bounds);
 		ofDrawBitmapString("button 1", bounds.x + 20, bounds.y + 10);
 		ofPopStyle();
 	};
@@ -32,11 +32,11 @@ void ofApp::setup(){
 	//copy everything from first button (behaviours and all)
 	*button2 = *button;
 	
-	button2->onDraw += [this, button2] (GuiElement::DrawArgs&) {
+	button2->onDraw += [this, button2] (const GuiElement::DrawArgs&) {
 		auto & bounds = button2->bounds;
 		ofPushStyle();
 		ofNoFill();
-		ofRect(bounds);
+		ofDrawRectangle(bounds);
 		ofDrawBitmapString("button 2", bounds.x + 20, bounds.y + 10);
 		ofPopStyle();
 	};

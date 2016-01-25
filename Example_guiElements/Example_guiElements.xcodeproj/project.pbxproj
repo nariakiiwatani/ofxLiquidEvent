@@ -66,6 +66,21 @@
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
+			<key>38C37C806F70C6439A126100</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>GuiElement.h</string>
+				<key>path</key>
+				<string>src/GuiElement.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
 			<key>BB4B014C10F69532006C3DED</key>
 			<dict>
 				<key>children</key>
@@ -391,7 +406,7 @@
 				<key>isa</key>
 				<string>PBXNativeTarget</string>
 				<key>name</key>
-				<string>Example_simpleExample</string>
+				<string>Example_guiElements</string>
 				<key>productName</key>
 				<string>myOFApp</string>
 				<key>productReference</key>
@@ -408,7 +423,7 @@
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>path</key>
-				<string>Example_simpleExampleDebug.app</string>
+				<string>Example_guiElementsDebug.app</string>
 				<key>sourceTree</key>
 				<string>BUILT_PRODUCTS_DIR</string>
 			</dict>
@@ -531,6 +546,7 @@
 					<string>E4B69E1D0A3A1BDC003C02F2</string>
 					<string>E4B69E1E0A3A1BDC003C02F2</string>
 					<string>E4B69E1F0A3A1BDC003C02F2</string>
+					<string>38C37C806F70C6439A126100</string>
 				</array>
 				<key>isa</key>
 				<string>PBXGroup</string>
