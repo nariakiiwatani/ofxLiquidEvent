@@ -27,7 +27,7 @@ void staticfunc1(){}
 void staticfunc2(int i){}
 void staticfunc3(int i, float y){}
 */
-functions with argument(s) need to cast by std::function<>
+// functions with argument(s) need to cast by std::function<>
 ofxLiquidEventUtils::addListener("app", staticfunc1);
 ofxLiquidEventUtils::addListener("app", function<void(int)>(staticfunc2));
 ofxLiquidEventUtils::addListener("app", function<void(int,float)>(staticfunc3));
@@ -60,21 +60,17 @@ It works like OSC address.
 I think it is familiar with OSC messages. :)
 
 ## Is it tested well?
-No.
+No. Be careful.
 
 ## How can I remove listener functions?
 Currently there is no royal way.  
-Just use original ofxLiquidEvent fucntion.
+Just get the event object by rvalue syntax and use original ofxLiquidEvent fucntion `clear()`.
 ```C++
-ofxLiquidEventUtils::getEvent<int>("app").clear();
+ofxLiquidEventUtils::getEvent<int>("app").clear(); // probably doesn't work
+ofxLiquidEventUtils::getEvent<int&&>("app").clear();
 ```
 
-## Why doesn't it call my function(s)?
-If your function has two or more arguments, see the argument types.  
-There is a weird problem in the cases it contains `const` and not `const`.  
-If you can, consider to remove `const` or change all arguments to `const`.  
-
-__or if you have any solution to this, please send PR or [contact me](mailto:nariakiiwatani@annolab.com).__
-
-## Can I add functions with rvalue arguments?
-No for now.  
+## Why doesn't `notify` call my function?
+Maybe the argument(s) you passed to `notify` are wrong.  
+There are strict but weird rules for binding functions to event objects that you have to know.  
+Run example_utilities and see console.
