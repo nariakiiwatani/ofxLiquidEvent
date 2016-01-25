@@ -9,158 +9,158 @@ void ofApp::setup(){
 	int &ir = i;
 	const int &cir = ci;
 
-	cout << "===== single value =====" << endl;
-	ofxLiquidEventUtils::addListener("app", function<void(int)>([](int){cout << "int called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int)>([](const int){cout << "const int called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int&)>([](int&){cout << "int reference called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int&)>([](const int&){cout << "const int reference called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int&&)>([](int&&){cout << "int rvalue called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int&&)>([](const int&&){cout << "const int rvalue called." << endl;}));
+	std::cout << "===== single value =====" << std::endl;
+	ofxLiquidEventUtils::addListener("app", std::function<void(int)>([](int){std::cout << "int called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int)>([](const int){std::cout << "const int called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int&)>([](int&){std::cout << "int reference called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int&)>([](const int&){std::cout << "const int reference called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int&&)>([](int&&){std::cout << "int rvalue called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int&&)>([](const int&&){std::cout << "const int rvalue called." << std::endl;}));
 	
-	cout << "--- rvalue ---" << endl;
+	std::cout << "--- rvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", 0);
-	cout << "--- lvalue ---" << endl;
+	std::cout << "--- lvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", i);
-	cout << "--- const lvalue ---" << endl;
+	std::cout << "--- const lvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", ci);
-	cout << "--- lvalue reference ---" << endl;
+	std::cout << "--- lvalue reference ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", ir);
-	cout << "--- const lvalue reference ---" << endl;
+	std::cout << "--- const lvalue reference ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", cir);
-	cout << "--- const rvalue ---" << endl;
+	std::cout << "--- const rvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", std::move(ci));
 	
-	cout << "===== multi value =====" << endl;
-	ofxLiquidEventUtils::addListener("app", function<void(int,int)>([](int,int){cout << "int,int called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int,const int)>([](int,const int){cout << "int,const int called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int,int&)>([](int,int&){cout << "int,int reference called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int,const int&)>([](int,const int&){cout << "int,const int reference called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int,int&&)>([](int,int&&){cout << "int,int rvalue called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int,const int&&)>([](int,const int&&){cout << "int,const int rvalue called." << endl;}));
+	std::cout << "===== multi value =====" << std::endl;
+	ofxLiquidEventUtils::addListener("app", std::function<void(int,int)>([](int,int){std::cout << "int,int called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int,const int)>([](int,const int){std::cout << "int,const int called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int,int&)>([](int,int&){std::cout << "int,int reference called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int,const int&)>([](int,const int&){std::cout << "int,const int reference called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int,int&&)>([](int,int&&){std::cout << "int,int rvalue called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int,const int&&)>([](int,const int&&){std::cout << "int,const int rvalue called." << std::endl;}));
 	
-	ofxLiquidEventUtils::addListener("app", function<void(const int,int)>([](const int,int){cout << "const int,int called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int,const int)>([](const int,const int){cout << "const int,const int called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int,int&)>([](const int,int&){cout << "const int,int reference called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int,const int&)>([](const int,const int&){cout << "const int,const int reference called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int,int&&)>([](const int,int&&){cout << "const int,int rvalue called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int,const int&&)>([](const int,const int&&){cout << "const int,const int rvalue called." << endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int,int)>([](const int,int){std::cout << "const int,int called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int,const int)>([](const int,const int){std::cout << "const int,const int called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int,int&)>([](const int,int&){std::cout << "const int,int reference called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int,const int&)>([](const int,const int&){std::cout << "const int,const int reference called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int,int&&)>([](const int,int&&){std::cout << "const int,int rvalue called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int,const int&&)>([](const int,const int&&){std::cout << "const int,const int rvalue called." << std::endl;}));
 	
-	ofxLiquidEventUtils::addListener("app", function<void(int&,int)>([](int&,int){cout << "int reference,int called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int&,const int)>([](int&,const int){cout << "int reference,const int called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int&,int&)>([](int&,int&){cout << "int reference,int reference called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int&,const int&)>([](int&,const int&){cout << "int reference,const int reference called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int&,int&&)>([](int&,int&&){cout << "int reference,int rvalue called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int&,const int&&)>([](int&,const int&&){cout << "int reference,const int rvalue called." << endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int&,int)>([](int&,int){std::cout << "int reference,int called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int&,const int)>([](int&,const int){std::cout << "int reference,const int called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int&,int&)>([](int&,int&){std::cout << "int reference,int reference called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int&,const int&)>([](int&,const int&){std::cout << "int reference,const int reference called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int&,int&&)>([](int&,int&&){std::cout << "int reference,int rvalue called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int&,const int&&)>([](int&,const int&&){std::cout << "int reference,const int rvalue called." << std::endl;}));
 	
-	ofxLiquidEventUtils::addListener("app", function<void(const int&,int)>([](const int&,int){cout << "const int reference,int called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int&,const int)>([](const int&,const int){cout << "const int reference,const int called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int&,int&)>([](const int&,int&){cout << "const int reference,int reference called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int&,const int&)>([](const int&,const int&){cout << "const int reference,const int reference called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int&,int&&)>([](const int&,int&&){cout << "const int reference,int rvalue called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int&,const int&&)>([](const int&,const int&&){cout << "const int reference,const int rvalue called." << endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int&,int)>([](const int&,int){std::cout << "const int reference,int called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int&,const int)>([](const int&,const int){std::cout << "const int reference,const int called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int&,int&)>([](const int&,int&){std::cout << "const int reference,int reference called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int&,const int&)>([](const int&,const int&){std::cout << "const int reference,const int reference called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int&,int&&)>([](const int&,int&&){std::cout << "const int reference,int rvalue called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int&,const int&&)>([](const int&,const int&&){std::cout << "const int reference,const int rvalue called." << std::endl;}));
 	
-	ofxLiquidEventUtils::addListener("app", function<void(int&&,int)>([](int&&,int){cout << "int rvalue,int called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int&&,const int)>([](int&&,const int){cout << "int rvalue,const int called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int&&,int&)>([](int&&,int&){cout << "int rvalue,int reference called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int&&,const int&)>([](int&&,const int&){cout << "int rvalue,const int reference called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int&&,int&&)>([](int&&,int&&){cout << "int rvalue,int rvalue called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(int&&,const int&&)>([](int&&,const int&&){cout << "int rvalue,const int rvalue called." << endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int&&,int)>([](int&&,int){std::cout << "int rvalue,int called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int&&,const int)>([](int&&,const int){std::cout << "int rvalue,const int called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int&&,int&)>([](int&&,int&){std::cout << "int rvalue,int reference called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int&&,const int&)>([](int&&,const int&){std::cout << "int rvalue,const int reference called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int&&,int&&)>([](int&&,int&&){std::cout << "int rvalue,int rvalue called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(int&&,const int&&)>([](int&&,const int&&){std::cout << "int rvalue,const int rvalue called." << std::endl;}));
 	
-	ofxLiquidEventUtils::addListener("app", function<void(const int&&,int)>([](const int&&,int){cout << "const int rvalue,int called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int&&,const int)>([](const int&&,const int){cout << "const int rvalue,const int called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int&&,int&)>([](const int&&,int&){cout << "const int rvalue,int reference called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int&&,const int&)>([](const int&&,const int&){cout << "const int rvalue,const int reference called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int&&,int&&)>([](const int&&,int&&){cout << "const int rvalue,int rvalue called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const int&&,const int&&)>([](const int&&,const int&&){cout << "const int rvalue,const int rvalue called." << endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int&&,int)>([](const int&&,int){std::cout << "const int rvalue,int called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int&&,const int)>([](const int&&,const int){std::cout << "const int rvalue,const int called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int&&,int&)>([](const int&&,int&){std::cout << "const int rvalue,int reference called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int&&,const int&)>([](const int&&,const int&){std::cout << "const int rvalue,const int reference called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int&&,int&&)>([](const int&&,int&&){std::cout << "const int rvalue,int rvalue called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const int&&,const int&&)>([](const int&&,const int&&){std::cout << "const int rvalue,const int rvalue called." << std::endl;}));
 		
-	cout << "--- rvalue,rvalue ---" << endl;
+	std::cout << "--- rvalue,rvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", 0, 0);
-	cout << "--- rvalue,lvalue ---" << endl;
+	std::cout << "--- rvalue,lvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", 0, i);
-	cout << "--- rvalue,const lvalue ---" << endl;
+	std::cout << "--- rvalue,const lvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", 0, ci);
-	cout << "--- rvalue,lvalue reference ---" << endl;
+	std::cout << "--- rvalue,lvalue reference ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", 0, ir);
-	cout << "--- rvalue,const lvalue reference ---" << endl;
+	std::cout << "--- rvalue,const lvalue reference ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", 0, cir);
-	cout << "--- rvalue,const rvalue ---" << endl;
+	std::cout << "--- rvalue,const rvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", 0, std::move(ci));
 	
-	cout << "--- lvalue,rvalue ---" << endl;
+	std::cout << "--- lvalue,rvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", i, 0);
-	cout << "--- lvalue,lvalue ---" << endl;
+	std::cout << "--- lvalue,lvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", i, i);
-	cout << "--- lvalue,const lvalue ---" << endl;
+	std::cout << "--- lvalue,const lvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", i, ci);
-	cout << "--- lvalue,lvalue reference ---" << endl;
+	std::cout << "--- lvalue,lvalue reference ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", i, ir);
-	cout << "--- lvalue,const lvalue reference ---" << endl;
+	std::cout << "--- lvalue,const lvalue reference ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", i, cir);
-	cout << "--- lvalue,const rvalue ---" << endl;
+	std::cout << "--- lvalue,const rvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", i, std::move(ci));
 	
-	cout << "--- const lvalue,rvalue ---" << endl;
+	std::cout << "--- const lvalue,rvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", ci, 0);
-	cout << "--- const lvalue,lvalue ---" << endl;
+	std::cout << "--- const lvalue,lvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", ci, i);
-	cout << "--- const lvalue,const lvalue ---" << endl;
+	std::cout << "--- const lvalue,const lvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", ci, ci);
-	cout << "--- const lvalue,lvalue reference ---" << endl;
+	std::cout << "--- const lvalue,lvalue reference ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", ci, ir);
-	cout << "--- const lvalue,const lvalue reference ---" << endl;
+	std::cout << "--- const lvalue,const lvalue reference ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", ci, cir);
-	cout << "--- const lvalue,const rvalue ---" << endl;
+	std::cout << "--- const lvalue,const rvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", ci, std::move(ci));
 	
-	cout << "--- lvalue reference,rvalue ---" << endl;
+	std::cout << "--- lvalue reference,rvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", ir, 0);
-	cout << "--- lvalue reference,lvalue ---" << endl;
+	std::cout << "--- lvalue reference,lvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", ir, i);
-	cout << "--- lvalue reference,const lvalue ---" << endl;
+	std::cout << "--- lvalue reference,const lvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", ir, ci);
-	cout << "--- lvalue reference,lvalue reference ---" << endl;
+	std::cout << "--- lvalue reference,lvalue reference ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", ir, ir);
-	cout << "--- lvalue reference,const lvalue reference ---" << endl;
+	std::cout << "--- lvalue reference,const lvalue reference ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", ir, cir);
-	cout << "--- lvalue reference,const rvalue ---" << endl;
+	std::cout << "--- lvalue reference,const rvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", ir, std::move(ci));
 	
-	cout << "--- const lvalue reference,rvalue ---" << endl;
+	std::cout << "--- const lvalue reference,rvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", cir, 0);
-	cout << "--- const lvalue reference,lvalue ---" << endl;
+	std::cout << "--- const lvalue reference,lvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", cir, i);
-	cout << "--- const lvalue reference,const lvalue ---" << endl;
+	std::cout << "--- const lvalue reference,const lvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", cir, ci);
-	cout << "--- const lvalue reference,lvalue reference ---" << endl;
+	std::cout << "--- const lvalue reference,lvalue reference ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", cir, ir);
-	cout << "--- const lvalue reference,const lvalue reference ---" << endl;
+	std::cout << "--- const lvalue reference,const lvalue reference ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", cir, cir);
-	cout << "--- const lvalue reference,const rvalue ---" << endl;
+	std::cout << "--- const lvalue reference,const rvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", cir, std::move(ci));
 	
-	cout << "--- const rvalue,rvalue ---" << endl;
+	std::cout << "--- const rvalue,rvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", std::move(ci), 0);
-	cout << "--- const rvalue,lvalue ---" << endl;
+	std::cout << "--- const rvalue,lvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", std::move(ci), i);
-	cout << "--- const rvalue,const lvalue ---" << endl;
+	std::cout << "--- const rvalue,const lvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", std::move(ci), ci);
-	cout << "--- const rvalue,lvalue reference ---" << endl;
+	std::cout << "--- const rvalue,lvalue reference ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", std::move(ci), ir);
-	cout << "--- const rvalue,const lvalue reference ---" << endl;
+	std::cout << "--- const rvalue,const lvalue reference ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", std::move(ci), cir);
-	cout << "--- const rvalue,const rvalue ---" << endl;
+	std::cout << "--- const rvalue,const rvalue ---" << std::endl;
 	ofxLiquidEventUtils::notify("app", std::move(ci), std::move(ci));
 	
-	cout << "===== be careful! =====" << endl;
-	ofxLiquidEventUtils::addListener("app", function<void(string)>([](string){cout << "string called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(const char*)>([](const char*){cout << "const char* called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(char*)>([](char*){cout << "char* called." << endl;}));
+	std::cout << "===== be careful! =====" << std::endl;
+	ofxLiquidEventUtils::addListener("app", std::function<void(string)>([](string){std::cout << "string called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(const char*)>([](const char*){std::cout << "const char* called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(char*)>([](char*){std::cout << "char* called." << std::endl;}));
 	
 	ofxLiquidEventUtils::notify("app", "this is not string");
 	ofxLiquidEventUtils::notify("app", string("this is string"));
 
-	ofxLiquidEventUtils::addListener("app", function<void(float)>([](float){cout << "float called." << endl;}));
-	ofxLiquidEventUtils::addListener("app", function<void(double)>([](double){cout << "double called." << endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(float)>([](float){std::cout << "float called." << std::endl;}));
+	ofxLiquidEventUtils::addListener("app", std::function<void(double)>([](double){std::cout << "double called." << std::endl;}));
 	ofxLiquidEventUtils::notify("app", 0);	// int 
 	ofxLiquidEventUtils::notify("app", 0.);	// double
 	ofxLiquidEventUtils::notify("app", 0.f);// float
@@ -191,7 +191,7 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-	cout << "mouse moved: " << x << "," << y << endl;
+	std::cout << "mouse moved: " << x << "," << y << std::endl;
 }
 
 //--------------------------------------------------------------

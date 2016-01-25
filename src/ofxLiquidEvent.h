@@ -81,7 +81,7 @@ public:
 
 	void notifyListeners(ArgType&&... arguments) {
 		for (auto listener : this->listeners) {
-			listener.second(forward<ArgType>(arguments)...);
+			listener.second(std::forward<ArgType>(arguments)...);
 		}
 	}
 
@@ -97,12 +97,12 @@ public:
 	void notifyListenersInReverse(ArgType&&... arguments) {
 		auto it = this->listeners.rbegin();
 		for (; it != this->listeners.rend(); it++) {
-			it->second(forward<ArgType>(arguments)...);
+			it->second(std::forward<ArgType>(arguments)...);
 		}
 	}
 
 	void operator()(ArgType&&... arguments) {
-		this->notifyListeners(arguments...);
+		this->notifyListeners(std::forward<ArgType>(arguments)...);
 	}
 
 	bool empty() const {
