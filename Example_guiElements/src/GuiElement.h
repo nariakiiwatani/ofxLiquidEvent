@@ -32,9 +32,9 @@ public:
 		Action action;
 	};
 	
-	ofxLiquidEvent<DrawArgs> onDraw;
-	ofxLiquidEvent<MouseArgs> onMouse;
-	ofxLiquidEvent<KeyArgs> onKey;
+	ofxLiquidEvent<DrawArgs&> onDraw;
+	ofxLiquidEvent<MouseArgs&> onMouse;
+	ofxLiquidEvent<KeyArgs&> onKey;
 	
 	ofRectangle bounds;
 };

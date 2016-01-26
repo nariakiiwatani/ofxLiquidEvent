@@ -9,7 +9,7 @@ void ofApp::setup(){
 	//
 	auto button = new GuiElement();
 	
-	button->onDraw += [this, button] (const GuiElement::DrawArgs&) {
+	button->onDraw += [this, button] (GuiElement::DrawArgs&) {
 		auto & bounds = button->bounds;
 		ofPushStyle();
 		ofNoFill();
@@ -32,7 +32,7 @@ void ofApp::setup(){
 	//copy everything from first button (behaviours and all)
 	*button2 = *button;
 	
-	button2->onDraw += [this, button2] (const GuiElement::DrawArgs&) {
+	button2->onDraw += [this, button2] (GuiElement::DrawArgs&) {
 		auto & bounds = button2->bounds;
 		ofPushStyle();
 		ofNoFill();
